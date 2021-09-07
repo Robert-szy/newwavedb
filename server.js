@@ -21,9 +21,12 @@ app.use((req, res) => {
 })
 
 
-
 // connects our backend code with the database
-mongoose.connect('mongodb+srv://Eres:12345@cluster0.ldgqn.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//mongoose.connect('mongodb+srv://Eres:OSD3jipjmn?@cluster0.ldgqn.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://Eres:qwerty123@cluster0.iwnci.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 const db = mongoose.connection;
 
 db.once('open', () => {
