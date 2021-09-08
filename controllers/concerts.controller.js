@@ -37,8 +37,11 @@ exports.getId = async (req, res) => {
 
 exports.getPerformer = async (req, res) => {
   try {
-    const { performer } = req.body;
+    const { performer } = req.params;
+    // console.log(req.params);
+
     const con = await Concert.find({ performer: performer });
+    // console.log(con);
     if(!con) res.status(404).json({ message: 'Not found' });
     else res.json(con);
   }
@@ -49,11 +52,11 @@ exports.getPerformer = async (req, res) => {
 
 exports.getGenre = async (req, res) => {
   try {
-    const { genre } = req.body;
-    const con = await Concert.find({ genre: genre });
+    const { genre } = req.params;
+
+    const con = await Concert.find( {genre: genre} );
     if(!con) res.status(404).json({ message: 'Not found' });
     else res.json(con);
-    res.send(`found ${con}`);
   }
   catch(err) {
     res.status(500).json({ message: err });
@@ -62,8 +65,8 @@ exports.getGenre = async (req, res) => {
 
 exports.getPriceRange = async (req, res) => {
   try {
-    //const { price } = req.body;
-    const con = await Concert.find({ price: { $gt: price_min, $lt: price_max } });
+    const { price_min, price_max } = req.params;
+    const con = await Concert.find({ price: { $gte: price_min, $lte: price_max } });
     if(!con) res.status(404).json({ message: 'Not found' });
     else res.json(con);
   }
@@ -74,7 +77,7 @@ exports.getPriceRange = async (req, res) => {
 
 exports.getDay = async (req, res) => {
   try {
-    const { day } = req.body;
+    const { day } = req.params;
     const con = await Concert.find({ day: day });
     if(!con) res.status(404).json({ message: 'Not found' });
     else res.json(con);
@@ -84,7 +87,7 @@ exports.getDay = async (req, res) => {
   }
 };
 
-
+  
 ///
 
 exports.postNew = async (req, res) => {
