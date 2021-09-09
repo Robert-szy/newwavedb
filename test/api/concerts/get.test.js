@@ -54,7 +54,7 @@ describe('GET /api/concerts', () => {
   });
 
   it('/ should return all concerts on a given price range ', async () => {
-    const res = await request(server).get('/api/concerts/20/40');
+    const res = await request(server).get('/api/concerts/20/50');
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body).to.not.be.null;
